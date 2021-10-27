@@ -3,36 +3,30 @@
  *  it treats as a proportional-width font and uses
  *  everywhere possible and as a main UI font, while
  *  the second font it treats as a fixed-width font,
- *  changeable to any text window by executing `Font`
+ *  changeable to any text window by executing "Font"
  *  from tag window.
  *
- *  Note: `Font` can also be executed
- *  with arguments with any `fontsrv -p .` approved
+ *  Note: "Font" can also be executed
+ *  with arguments with any "fontsrv -p ." approved
  *  fonts, thus allowing you to experiment with font
  *  sizes and whether you want anti-aliasing or not.
  */
-
 char *fontnames[2] = {
-	"/lib/font/bit/profont/profont-12.font",
-	"/lib/font/bit/mntcarlo/mntcarlo.font"
+	"/mnt/font/LucidaGrande/20a/font",
+	"/mnt/font/Menlo-Regular/20a/font"
 };
-
 /*
  *  globalautoindent tries to guess where to
  *  indent by the context of the previous line.
  *
  *  comes highly suggested.
  */
-
 int globalautoindent	= TRUE;
-
 /*
  *  swapping scroll buttons makes B1 scroll down
  *  instead of up and B2 up instead of down
  */
-
 int	swapscrollbuttons	= FALSE;
-
 /*
  *  bartflag triggers quote unquote experimental
  *  mode, in which instead of mouse following focus
@@ -40,9 +34,7 @@ int	swapscrollbuttons	= FALSE;
  *
  *  comes highly suggested.
  */
-
-int bartflag			= TRUE;
-
+int bartflag			= FALSE;
 /*
  *  colors-constants. now let me take a minute to explain
  *  them. C_TAGBG/FG/HLBG/HLFG are respectively your tag
@@ -61,21 +53,19 @@ int bartflag			= TRUE;
  *  the last two defines are for defining the color of the specific
  *  buttons highlight background.
  */
-
-#define C_TAGBG			0xFFFFFFFF
+#define ENABLE_PASTELS
+#define C_MIX DWhite
+#define C_TAGBG			DPalebluegreen
 #define C_TAGFG			0x000000FF
-#define C_TAGHLBG		0x999999FF
+#define C_TAGHLBG		DPalegreygreen
 #define C_TAGHLFG		0x000000FF
-
-#define C_TXTBG			0xFFFFFFFF
+#define C_TXTBG			DPaleyellow
 #define C_TXTFG			0x000000FF
-#define C_TXTHLBG		0x999999FF
+#define C_TXTHLBG		DDarkyellow
 #define C_TXTHLFG		0x000000FF
-
-#define C_WINBUTTON		0x4d4d4dFF
-#define C_COLBUTTON		0x55aaaaFF
-#define C_TMPBUTTON		0x55aaaaFF
-#define C_SCROLLBG		0x999999FF
-
-#define C_BUTTON2HL		0x55aaaaFF
-#define C_BUTTON3HL		0x55aaaaFF
+#define C_WINBUTTON		DPurpleblue
+#define C_COLBUTTON		DPurpleblue
+#define C_TMPBUTTON		DMedblue
+#define C_SCROLLBG		DYellowgreen
+#define C_BUTTON2HL		0xAA0000FF
+#define C_BUTTON3HL		0x006600FF

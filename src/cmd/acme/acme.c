@@ -72,10 +72,7 @@ threadmain(int argc, char *argv[])
 		}
 		break;
 	case 'a':
-		if(globalautoindent)
-			globalautoindent = FALSE;
-		else
-			globalautoindent = TRUE;
+		globalindent[AUTOINDENT] = TRUE;
 		break;
 
 /*  bartmode/flag is now an option to be turned on config.h, just
@@ -110,6 +107,9 @@ threadmain(int argc, char *argv[])
 		if(fontnames[1] == nil)
 			goto Usage;
 		break;
+	case 'i':
+		globalindent[SPACESINDENT] = TRUE;
+		break;
 	case 'l':
 		loadfile = ARGF();
 		if(loadfile == nil)
@@ -130,7 +130,7 @@ threadmain(int argc, char *argv[])
 		break;
 	default:
 	Usage:
-		fprint(2, "usage: acme -a -c ncol -f fontname -F fixedwidthfontname -l loadfile -W winsize\n");
+		fprint(2, "usage: acme -aib -c ncol -f fontname -F fixedwidthfontname -l loadfile -W winsize\n");
 		threadexitsall("usage");
 	}ARGEND
 
@@ -979,14 +979,21 @@ iconinit(void)
 	Image *tmp;
 
 	if(tagcols[BACK] == nil) {
-
+#ifndef ENABLE_PASTELS
 		tagcols[BACK]	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_TAGBG);
+#else
+		tagcols[BACK] = allocimagemix(display, C_TAGBG, C_MIX);
+#endif
+
 		tagcols[HIGH]	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_TAGHLBG);
 		tagcols[BORD]	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_COLBUTTON);
 		tagcols[TEXT]	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_TAGFG);
 		tagcols[HTEXT]	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_TAGHLFG);
-
+#ifndef ENABLE_PASTELS
 		textcols[BACK] 	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_TXTBG);
+#else
+		textcols[BACK] = allocimagemix(display, C_TXTBG, C_MIX);
+#endif
 		textcols[HIGH] 	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_TXTHLBG);
 		textcols[BORD] 	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_SCROLLBG);
 		textcols[TEXT] 	= allocimage(display, Rect(0,0,1,1), RGBA32, 1, C_TXTFG);

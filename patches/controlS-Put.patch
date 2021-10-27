@@ -1,0 +1,16 @@
+diff --git a/src/cmd/acme/text.c b/src/cmd/acme/text.c
+index bb151fc..082653c 100644
+--- a/src/cmd/acme/text.c
++++ b/src/cmd/acme/text.c
+@@ -820,6 +820,11 @@ texttype(Text *t, Rune r)
+ 		undo(t, nil, nil, FALSE, 0, nil, 0);
+ 		return;
+ 
++  case 0x13: case Kcmd+'s':	/* ^S: save/Put file */
++		typecommit(t);
++		put(&t->w->body, nil, nil, XXX, XXX, nil, 0);
++		return;
++
+ 	Tagdown:
+ 		/* expand tag to show all text */
+ 		if(!t->w->tagexpand){
