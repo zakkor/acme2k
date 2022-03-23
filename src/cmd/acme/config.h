@@ -13,7 +13,7 @@
  */
 char *fontnames[2] = {
 	"/mnt/font/LucidaGrande/18a/font",
-	"/mnt/font/Menlo-Regular/18a/font"
+	"/mnt/font/Menlo-Regular/16a/font"
 };
 /*
  *  globalautoindent tries to guess where to
